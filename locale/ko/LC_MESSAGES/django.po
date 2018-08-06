@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-06 01:46+0900\n"
+"POT-Creation-Date: 2018-08-06 15:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,18 @@ msgstr "한글"
 msgid "English"
 msgstr "영어"
 
-#: .\templates\Base\Base.html:7
+#: .\templates\Base\Base.html:7 .\templates\Base\Nav.html:3
 msgid "html_title"
 msgstr "보이스헌터"
+
+#: .\templates\Base\Nav.html:9
+msgid "register_project"
+msgstr "프로젝트 등록"
+
+#: .\templates\Base\Nav.html:10
+msgid "find_project"
+msgstr "프로젝트 찾기"
+
+#: .\templates\Base\Nav.html:11
+msgid "voice_actor_list"
+msgstr "성우 목록"
