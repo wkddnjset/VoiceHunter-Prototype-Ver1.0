@@ -1,0 +1,18 @@
+body, .navbar-fixed-top, .navbar-fixed-bottom {
+    min-width: 970px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.container {
+  width: 970px;
+  max-width: none !important;
+}
+li{
+	list-style: none;
+}
+/*Nav*/
+.nav-link{
+	color: rgb(255,255,255);
+}
+.nav-link:hover{
+	color: rgb(200,200,200);
+}
