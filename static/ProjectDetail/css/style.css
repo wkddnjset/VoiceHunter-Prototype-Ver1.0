@@ -61,4 +61,9 @@
 }
 .table th{
     background: rgb(247,247,247);
+    width: 110px;
+}
+.project-desc-title{
+    font-size: 20px;
+    font-weight: 600;
 }
