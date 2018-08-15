@@ -1,3 +1,6 @@
+a{
+    text-decoration: none !important;
+}
 .content-header{
 	background:rgb(255,255,255);
 	border-radius: 3px;
@@ -25,6 +28,9 @@
 }
 
 /* 프로젝트 리스트 */
+.card.item:hover{
+    border:1px solid rgb(69, 130, 236);
+}
 .card-title{
 	white-space: nowrap;
     overflow: hidden;

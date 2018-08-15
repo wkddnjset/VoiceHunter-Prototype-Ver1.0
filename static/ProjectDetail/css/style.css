@@ -1,0 +1,64 @@
+.project-detail-header {
+    margin-top: 0px;
+    line-height: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+.deadline-label{
+    margin-top: 5px;
+    background-color: rgb(7, 180, 129);
+    font-size: 12px;
+    padding: .2em .6em .2em;
+    line-height: 1;
+    color: rgb(255,255,255);
+    border-radius: .2em;
+    font-weight: 400 !important;
+}
+.applicant-count{
+    font-size: 17px;
+}
+.applicant-num{
+	color: rgb(240, 173, 78);
+	font-weight: 600;
+	font-size: 18px;
+}
+.summary{
+	margin-top: 15px;
+    border-top: 1px #dedede dashed;
+}
+.summary .project-detail-basic-info {
+    margin-top: 20px;
+    padding-left: 20px;
+    background: rgb(247,247,247);
+    border: 1px solid rgb(222,222,222);
+    border-radius: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    line-height: 38px;
+    font-size: 16px;
+    height: 50px;
+}
+.summary .project-detail-basic-info .budget {
+    min-width: 260px;
+    float: left;
+    color: #333;
+}
+.summary .project-detail-basic-info .term {
+    min-width: 210px;
+    float: left;
+    color: #333;
+}
+.summary .project-detail-basic-info .deadline {
+    float: left;
+    color: #333;
+}
+.summary .project-detail-meta-info {
+    padding: 15px 0 0 0;
+}
+.table{
+    border-bottom: 1px solid rgb(222,222,222) !important;
+}
+.table th{
+    background: rgb(247,247,247);
+}

@@ -1,0 +1,71 @@
+{% extends "Base/Base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'ProjectDetail/css/style.css' %}">
+
+<div class="container">
+	<div class="row mt-3">
+		<div class="col-12">
+			<div class="card item bg-light mb-1">
+				<div class="card-body">					
+					<div class="header-text project-detail-header">
+						<span>{{ item.project.title }}</span> 
+						<span class="applicant-count pull-right">
+							<i class="fa fa-pencil mr-1" style="margin-right: 5px;"></i>
+							총 <span class="applicant-num">{{ item.apply }}명</span> 지원
+						</span>
+					</div>
+					
+					<div class="summary">
+						<div class="project-detail-basic-info">
+							<div class="budget">
+								<strong class="mr-2">
+									<i class="fa fa-krw"></i>
+									<span class="title">예상금액 </span>
+								</strong>
+								{{ item.project.cost|intcomma }}원
+							</div>
+							<div class="term">
+								<strong class="mr-2">
+									<i class="fa fa-clock-o"></i>
+									<span class="title">예상기간 </span>
+								</strong>
+								{{ item.project.period }}일
+							</div>
+							<div class="deadline">
+								<strong class="mr-2">
+									<i class="fa fa-pencil"></i>
+									<span class="title">모집마감</span>
+								</strong>
+								{{ item.project.deadline|date:"Y년 m월 d일" }}
+							</div>
+						</div>
+						<table class="table w-100 mt-2">
+							<tbody>
+								<tr>
+									<th>예상 시작일</th>
+									<td>{{ item.project.start_at }}</td>
+									<th>프로/언더</th>
+									<td>{{ item.project.get_type_display }}</td>
+									<th>위치</th>
+									<td>{{ item.project.gugun.sido }} > {{ item.project.gugun }}</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="project-desc">
+							<div class="project-desc-title">프로젝트 내용</div>
+							<p></p>
+							<p></p>
+							<p><strong>&lt;프로젝트 진행 방식&gt;</strong></p><br><p>시작 시점에 미팅, 주 1회 미팅을 요청드립니다.</p><br><p><strong>&lt;프로젝트의 현재 상황&gt;</strong></p><br><p>HW 준비 완료 및 통신 파트만 작업이 필요합니다. <br>현재 기본 펌웨어 프로그램은 완료 상세 개발 부분 필요합니다.</p><br><p>1:N 통신 사양 : <br>1) 통신속도 : 1,200bps<br>2) 변조 : 2-GFSK<br>3) 주파수 : 447MHz대역<br>4) Deviation = 4KHz / RX filter BW = 8Khz / RF출력은 10mW 기준<br>현재 기본 프로토콜 및 동작 방식 등은 스펙이 정해져 있습니다.</p><br><p>타겟 MCU : <br>- 게이트웨이 : STM32F205<br>- 무선 센서 : Atmega328/Atmega88</p><br><p>개발 환경 :<br>- 게이트웨이: IAR Embedded Workbench <br>- 무선 센서: ATMEL Studio</p><br><p><strong>&lt;상세한 업무 내용&gt;</strong></p><br><p>필요 요소 : CC1120 트랜시버의 제어 &amp; 하기 내용의 1:N 통신 구현 가능한 펌웨어 소스 개발<br>시스템 개요 : 각 CC1120을 내장한 다수의 무선 센서와 1개의 게이트웨이로 구성되는 무선네트워크</p><br><p>구동 절차 : <br>1) 무선 센서에서 게이트웨이로 보낼 단위 패킷이 발생하면, 해당 무선 센서는 LBT(RSSI 레벨 특정값 이하일 때 송신)를 한 뒤 <br>게이트웨이로 보내고자 하는 데이터를 발신<br>2) 게이트웨이는 평소 수신 모드이며 무선 센서의 송신이 시작되면 바로 수신 동작으로 진입<br>3) 여러 대의 무선 센서가 동일한 시점에 송신하는 경우가 있을 수 있으므로, 모든 발신자들은 LBT 후 랜덤 값에 의해 주어지는 시간 지연 후 2차 LBT한 뒤 발신을 시작(동일 시점의 발신을 최대한 줄이려는 의도)</p><br><p>지원 시 고려 사항 : <br>1) RF 통신이 반 이중이므로 통신이 시작되면 상대편인 게이트웨이가 무선 센서의 송신 신호를 모두 수신한 뒤 무선 센서에게 Ack응답을 보내주기 위해 게이트웨이는 송신 모드로/무선 센서는 수신으로 바뀌는 시점까지 다른 무선 센서가 LBT를 한 뒤 크리어한 줄 알고 송신을 시도하는 것을 방지하기 위한 조치를 CC1120 트랜시버를 정교하게 제어하여 막아야 합니다. <br>2) CC1120의 제조사인 TI사에서 제공하는 기본 라이브러리 외에 SPI 제어를 통해 CC1120의 내장 컨트롤 레지스터를 원하는 대로 제어하여 원하는 펄스폭의 무변조 케리어 출력이나 정교한 변조/무변제 신호 제어, RSSI의 임의의 시간 판독 등 세밀한 타이밍 처리 등을 구현하여야 합니다.</p><br><p><strong>&lt;참고자료 / 유의사항&gt;</strong></p><br><p>금액/일정은 사전 미팅 시 협의 가능합니다.</p><p></p><p></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock%}
