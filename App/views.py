@@ -11,6 +11,8 @@ def HomePage(request, lang):
 def ProjectListPage(request, lang):
     translation.activate(lang)
     search = request.GET.get('q')
+    if search == None:
+        search = ""
     return render(request, 'ProjectList/ProjectListPage.html', {
         'lang': lang,
         'search' : search

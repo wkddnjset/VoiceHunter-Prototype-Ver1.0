@@ -1,12 +1,12 @@
 {% load i18n %}
 <nav class="navbar navbar-expand navbar-light bg-light p-1">
   <div class="container" style="padding: 0px 5px;">
-    <a class="navbar-brand" href="{% url 'App:home'  lang=lang %}">{% trans 'html_title' %}</a>
+    <a class="navbar-brand" href="{% url 'App:home'  lang=lang %}"><img src="/media/Main/logo.png" width="100"></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav" style="width: 600px;">
         <a class="nav-item nav-link active" href="#">{% trans 'register_project' %}</a>
         <a class="nav-item nav-link" href="{% url 'App:projects'  lang=lang %}">{% trans 'find_project' %}</a>
-        <a class="nav-item nav-link" href="#">{% trans 'voice_actor_list' %}</a>
+        <a class="nav-item nav-link">{% trans 'voice_actor_list' %}<small>(준비중)</small></a>
       </div>
       <div style="width: 254px;">
         {% if user.is_authenticated %}
