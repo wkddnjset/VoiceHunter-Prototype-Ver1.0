@@ -1,47 +1,35 @@
+{% load humanize %}
 <div class="container">
 	<div class="row">
+		{% for item in items %}
 		<div class="col-4">
 			<div class="card bg-light mb-3" style="max-width: 20rem;">
 			  <div class="card-body">
-			    <h6 class="card-title text-primary">웹 기반 해양선박 항해 모니터링 및 트래킹 시스템 개발</h6>
+			    <h6 class="card-title text-primary">[{{ item.project.get_gender_display }}] {{ item.project.title }}</h6>
 			    <h5 class="project-element-list">
 			    	<span class="project-element-money" style="padding-right: 7px;">
 			    		<i class="fa fa-krw mr-1"></i> 
-			    		<strong>20,000,000원</strong>
+			    		<strong>{{ item.project.cost|intcomma }}원</strong>
 			    	</span> 
 			    	<span class="project-element-day project-border" style="padding-left: 7px; padding-right: 7px;">
 			    		<i class="fa fa-clock-o mr-1"></i>
-			    		<strong>90일</strong>
+			    		<strong>{{ item.project.period }}일</strong>
 			    	</span>
 			    	<span class="project-element-proposal" style="padding-left: 7px;">
 			    		<i class="fa fa-pencil mr-1"></i>
-			    		<strong>8명 지원</strong>
+			    		<strong>{{ item.apply }}명 지원</strong>
 			    	</span>
 			    </h5>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			    <p class="card-text">{{ item.project.contant }}</p>
 			    <p class="project-skills-tag-viewbox">
-			    	<span class="skills-tag">javascript</span>
-			    	<span class="skills-tag">Java</span>
-			    	<span class="skills-tag">JSP</span> 
-			    ...</p>
+			    	{% for tag in item.tags %}
+			    		<span class="skills-tag">{{tag.tag}}</span>
+			    	{% endfor %}
+			    	...
+			    </p>
 			  </div>
 			</div>
 		</div>
-		<div class="col-4">
-			<div class="card bg-light mb-3" style="max-width: 20rem;">
-			  <div class="card-body">
-			    <h4 class="card-title">Light card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-		</div>
-		<div class="col-4">
-			<div class="card bg-light mb-3" style="max-width: 20rem;">
-			  <div class="card-body">
-			    <h4 class="card-title">Light card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-		</div>
+		{% endfor %}
 	</div>
 </div>

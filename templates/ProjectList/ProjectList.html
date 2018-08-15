@@ -1,0 +1,45 @@
+{% load humanize %}
+<div class="row mt-0">
+	{% for item in items %}
+	<div class="col-12">
+		<div class="card bg-light mb-1">
+		  <div class="card-body">
+		    <h6 class="card-title text-primary">[{{ item.project.get_gender_display }}] {{ item.project.title }}</h6>
+		    <h5 class="project-element-list">
+		    	<span class="project-element-money" style="padding-right: 7px;">
+		    		<i class="fa fa-krw mr-1"></i> 
+		    		<strong>예상금액 {{ item.project.cost|intcomma }}원</strong>
+		    	</span> 
+		    	<span class="project-element-day project-border" style="padding-left: 7px; padding-right: 7px;">
+		    		<i class="fa fa-clock-o mr-1"></i>
+		    		<strong>예상기간 {{ item.project.period }}일</strong>
+		    	</span>
+		    	<span class="project-element-proposal" style="padding-left: 7px;">
+		    		등록일자 {{ item.project.created_at|date:"Y년 m월 d일" }}
+		    	</span>
+		    </h5>
+		    <div class="project-unit-desc">
+		    	<p class="card-text" style="width: 629px;color: #999;">{{ item.project.contant }}</p>
+		    	<div class="outer-info">
+		    		<div class="outer-info-upper-data">
+		    			<i class="fa fa-clock-o mr-1"></i>
+		    			<span>마감 <strong>{{ item.project.deadline|timeuntil}} 전</strong></span>
+		    		</div>
+		    		<div class="outer-info-under-data">
+		    			<i class="fa fa-pencil mr-1"></i>
+		    			<span class="">지원자 <strong>{{ item.apply }}명</strong></span>
+		    		</div>
+		    	</div>
+		    	<div style="clear: both;"></div>
+		    </div>
+		    <p class="project-skills-tag-viewbox">
+		    	{% for tag in item.tags %}
+		    		<span class="skills-tag">{{tag.tag}}</span>
+		    	{% endfor %}
+		    	...
+		    </p>
+		  </div>
+		</div>
+	</div>
+	{% endfor %}
+</div>

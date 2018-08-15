@@ -16,11 +16,21 @@ li{
 
 /*Nav*/
 .nav-link{
+	color: rgb(52, 58, 64) !important;
 	font-weight: 400;
 	font-size: 15px;
 }
 .nav-link:hover{
-
+	background: rgb(243, 243, 243);
+    height: 100%;
+}
+.ready{
+	color: rgba(0,0,0,0.5) !important;
+}
+.ready:hover{
+	color: rgba(0,0,0,0.5) !important;
+	background: rgb(255,255,255) !important;
+	cursor: pointer;
 }
 .btn{
 	font-weight: 600;
