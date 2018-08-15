@@ -1,11 +1,11 @@
 {% load i18n %}
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="#">{% trans 'html_title' %}</a>
+<nav class="navbar navbar-expand navbar-light bg-light p-1">
+  <div class="container" style="padding: 0px 5px;">
+    <a class="navbar-brand" href="{% url 'App:home'  lang=lang %}">{% trans 'html_title' %}</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav" style="width: 600px;">
         <a class="nav-item nav-link active" href="#">{% trans 'register_project' %}</a>
-        <a class="nav-item nav-link" href="#">{% trans 'find_project' %}</a>
+        <a class="nav-item nav-link" href="{% url 'App:projects'  lang=lang %}">{% trans 'find_project' %}</a>
         <a class="nav-item nav-link" href="#">{% trans 'voice_actor_list' %}</a>
       </div>
       <div style="width: 254px;">
@@ -15,17 +15,25 @@
               {{ user }}님
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">마이페이지</a>
-              <a class="dropdown-item" href="#">계정 설정</a>
-              <a class="dropdown-item" href="#">로그아웃</a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-home"></i>
+                마이페이지
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-cog" style="color: #8f9295; margin-right: 8px;"></i>
+                계정 설정
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-power-off" style="color: #8f9295; margin-right: 8px;"></i>
+                로그아웃
+              </a>
             </div>
           </li>
         {% else %}
-          <button class="btn btn-outline-success float-right" type="submit">회원가입</button>
-          <button class="btn btn-outline-success float-right mr-2" type="submit">로그인</button>
+          <button class="btn btn-light float-right" type="submit">회원가입</button>
+          <button class="btn btn-light float-right" type="submit">로그인</button>
         {% endif %}
       </div>
     </div>
   </div>
 </nav>
-        {{ user }}

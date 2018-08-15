@@ -10,4 +10,14 @@ def HomePage(request, lang):
 
 def ProjectListPage(request, lang):
     translation.activate(lang)
-    return render(request, 'Project/ProjectListPage.html', {})
+    search = request.GET.get('q')
+    return render(request, 'ProjectList/ProjectListPage.html', {
+        'lang': lang,
+        'search' : search
+    })
+
+def ProjectCreatePage(request, lang):
+    translation.activate(lang)
+    return render(request, 'ProjectCreate/ProjectCreatePage.html', {
+        'lang': lang
+    })
