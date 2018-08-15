@@ -1,3 +1,4 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 from django.utils import translation
 from .models import *
@@ -34,10 +35,14 @@ def ProjectListPage(request, lang='ko'):
         dict['tags'] = ProjectTag.objects.filter(project=project)[:6]
         item_list.append(dict)
 
+    paginator = Paginator(item_list, 1)
+    page = request.GET.get('page')
+    contacts = paginator.get_page(page)
+
     return render(request, 'ProjectList/ProjectListPage.html', {
         'lang': lang,
         'search' : search,
-        'items':item_list,
+        'items':contacts,
     })
 
 def ProjectCreatePage(request, lang='ko'):
