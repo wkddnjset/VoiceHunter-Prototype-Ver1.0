@@ -1,6 +1,8 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.utils import translation
+from django.shortcuts import render
+from .forms import ProjectForm
 from .models import *
 # Create your views here.
 def HomePage(request, lang='ko'):
@@ -50,8 +52,20 @@ def ProjectListPage(request, lang='ko'):
 
 def ProjectCreatePage(request, lang='ko'):
     translation.activate(lang)
+
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('App:detail-projects', pk=post.pk)
+    else:
+        form = ProjectForm()
+
     return render(request, 'ProjectCreate/ProjectCreatePage.html', {
-        'lang': lang
+        'lang': lang,
+        'form': form
     })
 
 def ProjectDetailPage(request, pk, lang='ko'):

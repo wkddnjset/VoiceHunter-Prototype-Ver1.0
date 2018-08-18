@@ -49,14 +49,14 @@ class Project(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='유저')
     title = models.CharField(max_length=100, verbose_name='프로젝트 명')
+    gugun = models.ForeignKey(Gugun, on_delete=models.CASCADE, verbose_name='위치')
     type = models.CharField(max_length=10, choices=TYPE_CHOICES, verbose_name='성우타입')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, verbose_name='성별')
     cost = models.PositiveIntegerField(verbose_name='예상금액')
     period = models.PositiveIntegerField(verbose_name='예상기간')
     deadline = models.DateField(verbose_name='마감기간')
-    contant = models.TextField(verbose_name='프로젝트 내용')
+    content = models.TextField(verbose_name='프로젝트 내용')
     start_at = models.DateField(verbose_name='예상 시작일')
-    gugun = models.ForeignKey(Gugun, on_delete=models.CASCADE, verbose_name='위치')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='등록일자')
 
     def __str__(self):

@@ -62,3 +62,12 @@ i{
 .btn-light:hover{
 	background:rgb(248, 249, 250);
 }
+
+/* Footer */
+.footer{
+	background-image: none !important;
+}
+.lead img{
+	filter: brightness(92%);
+	width: 100px;
+}
