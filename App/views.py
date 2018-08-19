@@ -43,7 +43,7 @@ def ProjectListPage(request, lang='ko'):
         dict['tags'] = ProjectTag.objects.filter(project=project)[:6]
         item_list.append(dict)
 
-    paginator = Paginator(item_list, 1)
+    paginator = Paginator(item_list, 3)
     contacts = paginator.get_page(page)
 
     return render(request, 'ProjectList/ProjectListPage.html', {
