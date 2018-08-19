@@ -23,15 +23,15 @@
                 <i class="fa fa-cog" style="color: #8f9295; margin-right: 8px;"></i>
                 계정 설정
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{% url 'logout' %}">
                 <i class="fa fa-power-off" style="color: #8f9295; margin-right: 8px;"></i>
                 로그아웃
               </a>
             </div>
           </li>
         {% else %}
-          <button class="btn btn-light float-right" type="submit">회원가입</button>
-          <button class="btn btn-light float-right" type="submit">로그인</button>
+          <a class="btn btn-light float-right" >회원가입</a>
+          <a class="btn btn-light float-right" >로그인</a>
         {% endif %}
       </div>
     </div>
