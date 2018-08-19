@@ -1,13 +1,17 @@
 {% load static %}
 <div class="row mt-1">
 	<div class="col-12">
-		<div class="card bg-light mb-2 search-card">
-            <div class="card-body">
-              <table>
-                {{ form.as_table }}
-              </table>
-            </div>
-         </div>
+    <form method="POST">
+      {% csrf_token %}
+		  <div class="card bg-light mb-2 search-card">
+        <div class="card-body m-auto">
+          <table>
+            {{ form.as_table }}
+          </table>
+          <button id="Validate" class="btn btn-primary w-100 mt-5" type="button" data-toggle="modal" data-target="">프로젝트 등록하기</button>
+        </div>
+      </div>
+    </form>
 	</div>
 </div>
 
@@ -16,10 +20,57 @@
 <link rel="stylesheet" href="{% static 'Base/css/jquery-ui.min.css' %}">
 <link rel="stylesheet" href="{% static 'Base/css/jquery-ui.theme.min.css' %}">
 <script>
+  
+  // 3자리마다 콤마
+  // $('input[name=cost]').keyup(function(){
+  //   var replace_val = this.value.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+  //   $('input[name=cost]').value(replace_val);
+  // })
+  $( document ).ready(function() {
+    $('textarea[name=content]').text('\n< 프로젝트 내용 >\n\n\n\n< 샘플 대본 >')
+  });
+
   $( "#period_datepicker" ).datepicker({
     dateFormat: "yy-mm-dd",
+    beforeShow: function(){    
+      $('#ui-datepicker-div').removeClass('deadline_datepicker');
+      $('#ui-datepicker-div').removeClass('start_datepicker');
+      $('#ui-datepicker-div').addClass(this.id);
+    }
   });
   $( "#deadline_datepicker" ).datepicker({
     dateFormat: "yy-mm-dd",
+    beforeShow: function(){    
+      $('#ui-datepicker-div').removeClass('period_datepicker');
+      $('#ui-datepicker-div').removeClass('start_datepicker');
+      $('#ui-datepicker-div').addClass(this.id);
+    }
   });
+  $( "#start_datepicker" ).datepicker({
+    dateFormat: "yy-mm-dd",
+    beforeShow: function(){    
+      $('#ui-datepicker-div').removeClass('period_datepicker');
+      $('#ui-datepicker-div').removeClass('deadline_datepicker');
+      $('#ui-datepicker-div').addClass(this.id);
+    }
+  });
+
+  $('#Validate').click(function(){
+    var title = $("#id_title").val()
+    var gugun = $("#id_gugun").val()
+    var type = $("#id_type").val()
+    var gender = $("#id_gender").val()
+    var cost = $("#id_cost").val()
+    var period = $("#id_period").val()
+    var deadline = $("#deadline_datepicker").val()
+    var content = $("#id_content").val()
+    var start_at = $("#start_datepicker").val()
+
+    if (title=="" || cost=="" || period=="" || deadline=="" || start_at==""){
+      $('#Validate').attr('data-target', '#Error')
+    }
+    else{
+      $('#Validate').attr('data-target', '#Submit')
+    }
+  })
 </script>

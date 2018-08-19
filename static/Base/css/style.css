@@ -72,6 +72,25 @@ i{
 	width: 100px;
 }
 #ui-datepicker-div{
-	top:405px !important;
 	transform: scale(0.8);
+}
+.period_datepicker{
+	top:405px !important;
+}
+.deadline_datepicker{
+	top:442px !important;
+}
+.start_datepicker{
+	top:715px !important;
+}
+
+.errorlist{
+	position: relative;
+    top: 3px;
+    right: -360px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+    color: red;
+    font-weight: bold;
 }

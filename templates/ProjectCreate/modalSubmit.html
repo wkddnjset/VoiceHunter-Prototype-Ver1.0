@@ -1,0 +1,100 @@
+<!-- Modal -->
+<div class="modal fade" id="Submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">태그 추가</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <select id="id_tag" class="form-control form-control-sm mb-3">
+          {% for tag in tags %}
+            <option value="{{ tag.id }}">{{ tag.name }} 목소리</option>
+          {% endfor %}
+        </select>
+        <div id="tag_badge">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button id="submit" type="button" class="btn btn-primary">등록</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#id_tag').change(function() {
+    
+
+    var tag_badge = "<span pk='"+this.value+"' class='badge badge-pill badge-primary m-1' "
+    tag_badge    += "onclick='" + '$(".badge[pk='+this.value+']"'+").remove()'>"
+    tag_badge    += $('#id_tag option[value='+this.value+']').text() + " X</span>"
+
+    if ($('.badge[pk='+this.value+']').length==0){
+      $( "#tag_badge" ).append(tag_badge);
+    }
+  })
+
+  $('#submit').click(function(){
+    var tag_list = $("#tag_badge span")
+    var tag_pk_list = []
+    for (i=0; i<tag_list.length; i++){
+      tag_pk_list.push(tag_list[i].attributes.pk.value)
+    }
+    var title = $("#id_title").val()
+    var gugun = $("#id_gugun").val()
+    var type = $("#id_type").val()
+    var gender = $("#id_gender").val()
+    var cost = $("#id_cost").val()
+    var period = $("#id_period").val()
+    var deadline = $("#deadline_datepicker").val()
+    var content = $("#id_content").val()
+    var start_at = $("#start_datepicker").val()
+
+    console.log('title : ', title)
+    console.log('gugun : ', gugun)
+    console.log('type : ', type)
+    console.log('gender : ', gender)
+    console.log('cost : ', cost)
+    console.log('period : ', period)
+    console.log('deadline_datepicker : ', deadline)
+    console.log('content : ', content)
+    console.log('start_datepicker : ', start_at)
+
+    console.log(tag_pk_list)
+    $.ajax({ 
+        type: "POST", 
+        url: "{% url 'API:api-add-project' %}",
+        data: {
+            'title': title,
+            'gugun': gugun,
+            'type':type,
+            'gender':gender,
+            'cost':cost,
+            'period':period,
+            'deadline':deadline,
+            'content':content,
+            'start_at':start_at,
+            'tags':tag_pk_list.toString(),
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        dataType: "json", 
+        success: function(response){
+            console.log(response)
+            if (response.message == 'success'){
+              location.href = "/ko/project/"+response.pk
+            }
+            else{
+              alert('다시 입력해주세요.')
+              location.href = "/ko/add/project"
+            }
+        },
+        error: function(request, status, error){
+            alert("알수 없는 에러가 발생했습니다.")
+        },
+    });
+  })
+</script>

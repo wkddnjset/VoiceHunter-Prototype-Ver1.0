@@ -38,16 +38,16 @@ class Project(models.Model):
         verbose_name_plural = "   프로젝트 테이블"
         ordering = ["-id"]
     TYPE_CHOICES = (
-        ('none', '----'),
+        ('both', '상관없음'),
         ('pro', '프로'),
         ('under', '언더'),
-        ('both', '상관없음')
+
     )
     GENDER_CHOICES = (
-        ('none', '----'),
+        ('both', '성별무관'),
         ('male', '남자'),
         ('female', '여자'),
-        ('both', '성별무관')
+
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='유저')
     title = models.CharField(max_length=100, verbose_name='프로젝트 명')
@@ -56,9 +56,9 @@ class Project(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, verbose_name='성별')
     cost = models.PositiveIntegerField(verbose_name='예상금액')
     period = models.PositiveIntegerField(verbose_name='예상기간')
-    deadline = models.DateField(verbose_name='마감기간')
+    deadline = models.DateField(verbose_name='마감날짜')
     content = models.TextField(verbose_name='프로젝트 내용')
-    start_at = models.DateField(verbose_name='예상 시작일')
+    start_at = models.DateField(verbose_name='예상 시작날짜')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='등록일자')
 
     def __str__(self):

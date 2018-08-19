@@ -64,6 +64,10 @@
     width: 110px;
 }
 .project-desc-title{
+
     font-size: 20px;
     font-weight: 600;
+}
+.project-desc{
+    padding: 20px;
 }
