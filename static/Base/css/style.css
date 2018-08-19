@@ -71,3 +71,7 @@ i{
 	filter: brightness(92%);
 	width: 100px;
 }
+#ui-datepicker-div{
+	top:405px !important;
+	transform: scale(0.8);
+}

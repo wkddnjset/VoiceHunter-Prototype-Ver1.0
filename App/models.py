@@ -38,11 +38,13 @@ class Project(models.Model):
         verbose_name_plural = "   프로젝트 테이블"
         ordering = ["-id"]
     TYPE_CHOICES = (
+        ('none', '----'),
         ('pro', '프로'),
         ('under', '언더'),
         ('both', '상관없음')
     )
     GENDER_CHOICES = (
+        ('none', '----'),
         ('male', '남자'),
         ('female', '여자'),
         ('both', '성별무관')

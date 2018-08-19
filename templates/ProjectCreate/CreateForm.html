@@ -1,3 +1,4 @@
+{% load static %}
 <div class="row mt-1">
 	<div class="col-12">
 		<div class="card bg-light mb-2 search-card">
@@ -9,3 +10,16 @@
          </div>
 	</div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="{% static 'Base/js/jquery-ui.js' %}"></script>
+<link rel="stylesheet" href="{% static 'Base/css/jquery-ui.min.css' %}">
+<link rel="stylesheet" href="{% static 'Base/css/jquery-ui.theme.min.css' %}">
+<script>
+  $( "#period_datepicker" ).datepicker({
+    dateFormat: "yy-mm-dd",
+  });
+  $( "#deadline_datepicker" ).datepicker({
+    dateFormat: "yy-mm-dd",
+  });
+</script>
