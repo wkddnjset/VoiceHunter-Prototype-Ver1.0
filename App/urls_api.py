@@ -5,5 +5,5 @@ from .views import (
 
 app_name = 'API'
 urlpatterns = [
-    path('/api/add/project', CreateProjectAPI, name='api-add-project')
+    path('api/add/project/', CreateProjectAPI, name='api-add-project')
 ]
