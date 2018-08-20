@@ -9,8 +9,7 @@ from .forms import ProjectForm
 from .models import *
 import json
 # Create your views here.
-def HomePage(request, lang='ko'):
-    translation.activate(lang)
+def HomePage(request):
     projects = Project.objects.all()
 
     item_list = []
@@ -21,12 +20,10 @@ def HomePage(request, lang='ko'):
         dict['tags'] = ProjectTag.objects.filter(project=project)[:3]
         item_list.append(dict)
     return render(request, 'Home/HomePage.html', {
-        'lang':lang,
         'items':item_list,
     })
 
-def ProjectListPage(request, lang='ko'):
-    translation.activate(lang)
+def ProjectListPage(request):
     search = request.GET.get('q')
     page = request.GET.get('page')
     if search == None:
@@ -47,15 +44,13 @@ def ProjectListPage(request, lang='ko'):
     contacts = paginator.get_page(page)
 
     return render(request, 'ProjectList/ProjectListPage.html', {
-        'lang': lang,
         'search': search,
         'page': page,
         'items': contacts,
         'projects_len':len(projects),
     })
 
-def ProjectCreatePage(request, lang='ko'):
-    translation.activate(lang)
+def ProjectCreatePage(request):
 
     if request.method == "POST":
         form = ProjectForm(request.POST)
@@ -64,19 +59,17 @@ def ProjectCreatePage(request, lang='ko'):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-        return redirect('App:detail-projects', pk=post.id, lang='ko')
+        return redirect('App:detail-projects', pk=post.id)
     else:
         form = ProjectForm()
 
     tags = Tag.objects.all()
     return render(request, 'ProjectCreate/ProjectCreatePage.html', {
-        'lang': lang,
         'form': form,
         'tags': tags
     })
 
-def ProjectDetailPage(request, pk, lang='ko'):
-    translation.activate(lang)
+def ProjectDetailPage(request, pk):
 
     project = Project.objects.get(pk=pk)
     item = {}
@@ -85,7 +78,6 @@ def ProjectDetailPage(request, pk, lang='ko'):
     item['tags'] = ProjectTag.objects.filter(project=project)[:6]
 
     return render(request, 'ProjectDetail/ProjectDetailPage.html', {
-        'lang': lang,
         'item':item,
     })
 
@@ -131,16 +123,6 @@ def CreateProjectAPI(request):
             print('프로젝트 삭제 생성')
     except:
         message = 'error'
-    # print(title)
-    # print(gugun)
-    # print(type)
-    # print(gender)
-    # print(cost)
-    # print(period)
-    # print(deadline)
-    # print(content)
-    # print(start_at)
-    # print(tags)
 
     context = {
         'pk':project.id,

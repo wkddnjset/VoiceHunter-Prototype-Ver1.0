@@ -5,7 +5,7 @@
 		<div class="card item bg-light mb-1">
 		  <div class="card-body">
 		    <h6 class="card-title text-primary">
-		    	<a href="{% url 'App:detail-projects' lang=lang pk=item.project.id %}">[{{ item.project.get_gender_display }}] {{ item.project.title }}</a>
+		    	<a href="{% url 'App:detail-projects' pk=item.project.id %}">[{{ item.project.get_gender_display }}] {{ item.project.title }}</a>
 			</h6>
 		    <h5 class="project-element-list">
 		    	<span class="project-element-money" style="padding-right: 7px;">
