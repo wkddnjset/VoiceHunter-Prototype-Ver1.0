@@ -1,13 +1,9 @@
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.views.decorators.http import require_http_methods
+from django.core.paginator import Paginator
 from django.shortcuts import redirect
-from django.utils import translation
 from django.shortcuts import render
 from .forms import ProjectForm
 from .models import *
-import json
+
 # Create your views here.
 def HomePage(request):
     projects = Project.objects.all()
@@ -81,51 +77,12 @@ def ProjectDetailPage(request, pk):
         'item':item,
     })
 
-@login_required
-@require_http_methods(["POST"])
-def CreateProjectAPI(request):
-    title = request.POST.get('title', None)
-    gugun = request.POST.get('gugun', None)
-    type = request.POST.get('type', None)
-    gender = request.POST.get('gender', None)
-    cost = request.POST.get('cost', None)
-    period = request.POST.get('period', None)
-    deadline = request.POST.get('deadline', None)
-    content = request.POST.get('content', None)
-    start_at = request.POST.get('start_at', None)
-    tags = request.POST.get('tags', None)
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 
-    try:
-        project = Project.objects.create(
-            user=request.user,
-            title=title,
-            gugun=Gugun.objects.get(pk=gugun),
-            type=type,
-            gender=gender,
-            cost=int(cost),
-            period=int(period),
-            deadline=deadline,
-            content=content,
-            start_at=start_at
-        )
-        print('프로젝트 생성')
-        try:
-            for tag_id in tags.split(','):
-                ProjectTag.objects.create(
-                    project=project,
-                    tag=Tag.objects.get(pk=tag_id)
-                )
-            message = 'success'
-            print('태그관계 생성')
-        except:
-            project.delete()
-            message = 'error'
-            print('프로젝트 삭제 생성')
-    except:
-        message = 'error'
 
-    context = {
-        'pk':project.id,
-        'message': message}
-    return HttpResponse(json.dumps(context), content_type="application/json")
-
+class SignUp(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'

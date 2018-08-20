@@ -1,0 +1,28 @@
+<style>
+    .error{
+        color: red;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+</style>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card bg-light mb-2 search-card">
+            <div class="card-body">
+                <div style="width: 60%;float: left;">
+                    <h5 class="card-title">에러 메세지</h5>
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <p class="card-text error">{{ error|escape }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+
