@@ -1,4 +1,39 @@
+{% load static %}
+<script src="{% static 'ProjectDetail/js/src/recorder.js' %}"></script>
+<script src="{% static 'ProjectDetail/js/src/Fr.voice.js' %}"></script>
+
+<script src="{% static 'ProjectDetail/js/jquery.js' %}"></script>
+<script src="{% static 'ProjectDetail/js/app.js' %}"></script>
+
 <!-- Modal -->
+<style>
+  .button{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 5px;
+    padding: 5px 12px;
+    cursor: pointer;
+    outline: none;
+    font-size: 13px;
+    text-decoration: none !important;
+    text-align: center;
+    color:#fff;
+    background-color: #4D90FE;
+    background-image: linear-gradient(top,#4D90FE, #4787ED);
+    background-image: -ms-linear-gradient(top,#4D90FE, #4787ED);
+    background-image: -o-linear-gradient(top,#4D90FE, #4787ED);
+    background-image: linear-gradient(top,#4D90FE, #4787ED);
+    border: 1px solid #4787ED;
+    box-shadow: 0 1px 3px #BFBFBF;
+  }
+  .disabled{
+    box-shadow:none;
+    opacity:0.7;
+  }
+  canvas{
+    display: none;
+  }
+</style>
 <div class="modal fade" id="Apply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -9,11 +44,22 @@
         </button>
       </div>
       <div class="modal-body">
-        빈칸을 전부 채워주세요
-        <input type="file" accept="audio/*;capture=microphone">
+        <h2>Record</h2>
+        <audio controls id="audio"></audio>
+        <div>
+          <a class="btn btn-primary recordButton" id="record">녹음</a>
+          <a class="btn btn-primary disabled one" id="pause">정지</a>
+          <a class="btn btn-primary disabled one" id="stop">리셋</a>
+        </div><br/>
+        <div data-type="MP3">
+          <p>MP3 Controls:</p>
+          <a class="btn btn-primary disabled one" id="play">실행</a>
+          <a class="btn btn-primary disabled one" id="save">지원하기</a>
+        </div>
+        <canvas id="level" height="200" width="500"></canvas>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
       </div>
     </div>
   </div>
